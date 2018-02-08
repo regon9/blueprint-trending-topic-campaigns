@@ -37,8 +37,11 @@ public class SendRewardConnector {
         Map<String, Object> results = new HashMap<>();
         Collection winners = (Collection) event.getVariables().get("top");
         String campaign = String.valueOf(event.getVariables().get("campaign"));
+        Map<String, String> rewardsText = new HashMap<>();
 
         for (Object winner : winners) {
+            rewardsText.put(winner.toString(),
+                            "#  Reward time!!! You WON " + winner + "!!! ");
             logger.info(append("service-name",
                                appName),
                         "#" + campaign + "#################################################################");
@@ -49,7 +52,8 @@ public class SendRewardConnector {
                                appName),
                         "#################################################################################");
         }
-
+        results.put("rewardsText",
+                    rewardsText);
         Message<IntegrationResultEvent> message = IntegrationResultEventBuilder.resultFor(event)
                 .withVariables(results)
                 .buildMessage();
