@@ -1,14 +1,19 @@
 package org.activiti.cloud.connectors.twitter.connectors;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.activiti.cloud.connectors.starter.channels.IntegrationResultSender;
 import org.activiti.cloud.connectors.starter.model.IntegrationRequestEvent;
 import org.activiti.cloud.connectors.starter.model.IntegrationResultEvent;
 import org.activiti.cloud.connectors.starter.model.IntegrationResultEventBuilder;
+import org.activiti.cloud.connectors.twitter.model.RankedAuthor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
@@ -25,25 +30,29 @@ public class TweetConnector {
     @Value("${spring.application.name}")
     private String appName;
 
+    @Autowired
+    private ObjectMapper mapper;
+
     private final IntegrationResultSender integrationResultSender;
-
-
 
     public TweetConnector(IntegrationResultSender integrationResultSender) {
         this.integrationResultSender = integrationResultSender;
     }
 
     @StreamListener(value = TweetConnectorChannels.TWEET_CONSUMER)
-    public void processEnglish(IntegrationRequestEvent event) throws InterruptedException {
-
+    public void processEnglish(IntegrationRequestEvent event) throws InterruptedException, IOException {
 
         Map<String, String> rewardsText = (Map<String, String>) event.getVariables().get("rewardsText");
 
+        for (String author : rewardsText.keySet()) {
+            RankedAuthor rankedAuthor = mapper.convertValue(author,
+                                                            RankedAuthor.class);
 
-        for(String key: rewardsText.keySet()) {
+
             logger.info(append("service-name",
                                appName),
-                        "Tweeting >>> To: " + key + " related to the campaign: " + " Reward:" + rewardsText.get(key));
+                        "Tweeting >>> To: " + rankedAuthor.getUserName() + " related to the campaign: " +
+                                " Reward:" + rewardsText.get(author) + " -> nroOfTweets: " + rankedAuthor.getNroOfTweets());
         }
 
         Map<String, Object> results = new HashMap<>();
@@ -53,6 +62,4 @@ public class TweetConnector {
                 .buildMessage();
         integrationResultSender.send(message);
     }
-
-
 }
