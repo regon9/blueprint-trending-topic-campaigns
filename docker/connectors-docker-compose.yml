@@ -9,7 +9,9 @@ services:
 #        - TWITTER4J_OAUTH_ACCESSTOKEN=<TWITTER4J_OAUTH_ACCESSTOKEN>
 #        - TWITTER4J_OAUTH_ACCESSTOKENSECRET=<TWITTER4J_OAUTH_ACCESSTOKENSECRET>
         - JAVA_OPTS=-Xmx64m -Xms64m
-        - tweet_rate=350
+        - tweet_rate=50
+      ports:
+        - "8082:8082"
       external_links:
         - rabbitmq
       networks:
@@ -34,6 +36,8 @@ services:
         - infrastructure
   activiti-cloud-connector-reward:
       image: activiti-cloud-connector-reward
+      ports:
+        - "8085:8085"
       environment:
         - ACT_RABBITMQ_HOST=rabbitmq
         - JAVA_OPTS=-Xmx64m -Xms64m

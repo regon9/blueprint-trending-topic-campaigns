@@ -29,12 +29,18 @@
 
     <serviceTask id="serviceTaskRank" name="Get Ranking for Authors" implementation="Get Top Authors Ranked"/>
 
-    <sequenceFlow id="flow2" sourceRef="serviceTaskRank" targetRef="serviceTaskSendReward"/>
+    <sequenceFlow id="flow2" sourceRef="serviceTaskRank" targetRef="serviceTaskCreateReward"/>
 
 
-    <serviceTask id="serviceTaskSendReward" name="Tweet Winners" implementation="SendRewardToWinners" />
+    <serviceTask id="serviceTaskCreateReward" name="Create Rewards" implementation="CreateRewardToWinners">
+    </serviceTask>
 
-    <sequenceFlow id="flow4" sourceRef="serviceTaskSendReward" targetRef="end"/>
+    <sequenceFlow id="flow3" sourceRef="serviceTaskCreateReward" targetRef="serviceTaskTweetRewards"/>
+
+    <serviceTask id="serviceTaskTweetRewards" name="Tweet to Winners" implementation="TweetRewards">
+    </serviceTask>
+
+    <sequenceFlow id="flow4" sourceRef="serviceTaskTweetRewards" targetRef="end"/>
 
     <endEvent name="Tweet Ranks were published" id="end"/>
 
