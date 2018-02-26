@@ -118,7 +118,8 @@ spec:
   ports:
     - port: 8083
       targetPort: 8083
-  type: ClusterIP
+      nodePort: 30083
+  type: NodePort
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
@@ -189,7 +190,8 @@ spec:
   ports:
     - port: 8082
       targetPort: 8082
-  type: ClusterIP
+      nodePort: 30082
+  type: NodePort
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
