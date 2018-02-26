@@ -24,6 +24,10 @@
       <artifactId>activiti-cloud-starter-runtime-bundle</artifactId>
       <exclusions>
         <exclusion>
+          <groupId>org.activiti.cloud</groupId>
+          <artifactId>activiti-cloud-services-identity-keycloak</artifactId>
+        </exclusion>
+        <exclusion>
           <groupId>org.springframework.cloud</groupId>
           <artifactId>spring-cloud-config-client</artifactId>
         </exclusion>
