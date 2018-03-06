@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>org.activiti.cloud.examples</groupId>
     <artifactId>trending-topic-campaigns</artifactId>
     <version>1.0.0-SNAPSHOT</version>
   </parent>
-
   <artifactId>activiti-cloud-connectors-processing</artifactId>
   <name>Activiti Cloud :: Activiti 3rd Party Cloud Connector</name>
-
   <properties>
     <ratelimitj.version>0.4.0</ratelimitj.version>
+    <docker.build>true</docker.build>
   </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>
@@ -63,46 +62,5 @@
       <artifactId>spring-cloud-stream-binder-rabbit-test-support</artifactId>
       <scope>test</scope>
     </dependency>
-
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-        <version>${maven.docker.plugin.version}</version>
-        <configuration>
-          <images>
-            <image>
-              <name>activiti-cloud-connector-processing</name>
-              <alias>activiti-cloud-connector-processing</alias>
-              <build>
-                <from>openjdk:alpine</from>
-                <assembly>
-                  <descriptorRef>artifact</descriptorRef>
-                </assembly>
-                <cmd>java ${JAVA_OPTS} -jar maven/${project.artifactId}-${project.version}.jar</cmd>
-              </build>
-            </image>
-          </images>
-        </configuration>
-        <executions>
-          <execution>
-            <id>docker:build</id>
-            <phase>install</phase>
-            <goals>
-              <goal>build</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
 </project>
