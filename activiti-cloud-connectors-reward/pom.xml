@@ -9,6 +9,9 @@
   </parent>
   <artifactId>activiti-cloud-connectors-reward</artifactId>
   <name>Activiti Cloud :: Activiti Rewards Cloud Connector</name>
+  <properties>
+    <docker.build>true</docker.build>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>
@@ -48,12 +51,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 </project>

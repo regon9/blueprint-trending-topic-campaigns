@@ -9,6 +9,9 @@
   </parent>
   <artifactId>english-campaign-rb</artifactId>
   <name>Activiti Cloud :: Twitter Campaign (English)</name>
+  <properties>
+    <docker.build>true</docker.build>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>
@@ -59,12 +62,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 </project>

@@ -11,6 +11,7 @@
   <name>Activiti Cloud :: Activiti 3rd Party Cloud Connector</name>
   <properties>
     <ratelimitj.version>0.4.0</ratelimitj.version>
+    <docker.build>true</docker.build>
   </properties>
   <dependencies>
     <dependency>
@@ -62,12 +63,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>io.fabric8</groupId>
-        <artifactId>docker-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
 </project>
