@@ -9,9 +9,6 @@
   </parent>
   <artifactId>activiti-cloud-connectors-dummytwitter</artifactId>
   <name>Activiti Cloud :: Activiti Dummy Twitter Cloud Connector</name>
-  <properties>
-    <docker.build>true</docker.build>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>

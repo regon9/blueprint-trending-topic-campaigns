@@ -9,9 +9,6 @@
   </parent>
   <artifactId>activiti-cloud-connectors-ranking</artifactId>
   <name>Activiti Cloud :: Activiti Ranking Cloud Connector</name>
-  <properties>
-    <docker.build>true</docker.build>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>

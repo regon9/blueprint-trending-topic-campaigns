@@ -1,7 +1,7 @@
 version: '2'
 services:
   activiti-cloud-connector-twitter:
-      image: activiti-cloud-connector-dummytwitter
+      image: activiti/activiti-cloud-connector-dummytwitter
       environment:
         - ACT_RABBITMQ_HOST=rabbitmq
 #        - TWITTER4J_OAUTH_CONSUMERKEY=<TWITTER4J_OAUTH_CONSUMERKEY> #for live twitter get credentials replacing placeholders by signing up at apps.twitter.com
@@ -17,7 +17,7 @@ services:
       networks:
         - infrastructure
   activiti-cloud-connector-ranking:
-      image: activiti-cloud-connector-ranking
+      image: activiti/activiti-cloud-connector-ranking
       environment:
         - ACT_RABBITMQ_HOST=rabbitmq
         - JAVA_OPTS=-Xmx64m -Xms64m
@@ -26,7 +26,7 @@ services:
       networks:
         - infrastructure
   activiti-cloud-connector-processing:
-      image: activiti-cloud-connector-processing
+      image: activiti/activiti-cloud-connector-processing
       environment:
         - ACT_RABBITMQ_HOST=rabbitmq
         - JAVA_OPTS=-Xmx256m -Xms256m
@@ -35,7 +35,7 @@ services:
       networks:
         - infrastructure
   activiti-cloud-connector-reward:
-      image: activiti-cloud-connector-reward
+      image: activiti/activiti-cloud-connector-reward
       ports:
         - "8085:8085"
       environment:

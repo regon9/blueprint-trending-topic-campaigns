@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: activiti-cloud-connector-processing
-          image: activiti-cloud-connector-processing:latest
+          image: activiti/activiti-cloud-connector-processing:latest
           readinessProbe:
             httpGet:
               path: /actuator/health
@@ -77,7 +77,7 @@ spec:
     spec:
       containers:
         - name: activiti-cloud-connector-ranking
-          image: activiti-cloud-connector-ranking:latest
+          image: activiti/activiti-cloud-connector-ranking:latest
           readinessProbe:
             httpGet:
               path: /actuator/health
@@ -139,7 +139,7 @@ spec:
     spec:
       containers:
         - name: activiti-cloud-connector-twitter
-          image: activiti-cloud-connector-dummytwitter:latest
+          image: activiti/activiti-cloud-connector-dummytwitter:latest
           readinessProbe:
             httpGet:
               path: /actuator/health
@@ -211,7 +211,7 @@ spec:
     spec:
       containers:
         - name: activiti-cloud-connector-reward
-          image: activiti-cloud-connector-reward:latest
+          image: activiti/activiti-cloud-connector-reward:latest
           readinessProbe:
             httpGet:
               path: /actuator/health

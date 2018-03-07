@@ -39,7 +39,7 @@ spec:
     spec:
       containers:
         - name: english-campaign-activiti
-          image: english-campaign-rb
+          image: activiti/english-campaign-rb
           readinessProbe:
             httpGet:
               path: /actuator/health
