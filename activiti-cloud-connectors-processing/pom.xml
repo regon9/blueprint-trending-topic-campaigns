@@ -8,7 +8,7 @@
     <version>1.0.0-SNAPSHOT</version>
   </parent>
   <artifactId>activiti-cloud-connectors-processing</artifactId>
-  <name>Activiti Cloud :: Activiti 3rd Party Cloud Connector</name>
+  <name>Activiti Cloud :: Activiti Processing Cloud Connector</name>
   <properties>
     <ratelimitj.version>0.4.0</ratelimitj.version>
   </properties>
@@ -35,6 +35,14 @@
       <artifactId>stanford-corenlp</artifactId>
       <version>3.8.0</version>
       <classifier>models</classifier>
+    </dependency>
+    <dependency>
+      <groupId>net.logstash.logback</groupId>
+      <artifactId>logstash-logback-encoder</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
