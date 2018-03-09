@@ -10,8 +10,18 @@
   <artifactId>activiti-cloud-connectors-processing</artifactId>
   <name>Activiti Cloud :: Activiti Processing Cloud Connector</name>
   <properties>
-    <ratelimitj.version>0.4.0</ratelimitj.version>
+    <suppressionFile>${basedir}/../dependency-check-suppression.xml</suppressionFile>
+    <stanford-corenlp.version>3.9.1</stanford-corenlp.version>
   </properties>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>xalan</groupId>
+        <artifactId>xalan</artifactId>
+        <version>2.7.2</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>
@@ -28,12 +38,18 @@
     <dependency>
       <groupId>edu.stanford.nlp</groupId>
       <artifactId>stanford-corenlp</artifactId>
-      <version>3.8.0</version>
+      <version>${stanford-corenlp.version}</version>
+      <exclusions>
+        <exclusion>
+          <groupId>xerces</groupId>
+          <artifactId>xercesImpl</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>edu.stanford.nlp</groupId>
       <artifactId>stanford-corenlp</artifactId>
-      <version>3.8.0</version>
+      <version>${stanford-corenlp.version}</version>
       <classifier>models</classifier>
     </dependency>
     <dependency>

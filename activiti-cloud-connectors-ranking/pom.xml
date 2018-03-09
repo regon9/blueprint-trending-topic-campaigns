@@ -9,6 +9,9 @@
   </parent>
   <artifactId>activiti-cloud-connectors-ranking</artifactId>
   <name>Activiti Cloud :: Activiti Ranking Cloud Connector</name>
+  <properties>
+    <suppressionFile>${basedir}/../dependency-check-suppression.xml</suppressionFile>
+  </properties>
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>
