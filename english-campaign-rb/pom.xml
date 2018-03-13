@@ -9,9 +9,6 @@
   </parent>
   <artifactId>english-campaign-rb</artifactId>
   <name>Activiti Cloud :: Twitter Campaign (English)</name>
-  <properties>
-    <suppressionFile>${basedir}/../dependency-check-suppression.xml</suppressionFile>
-  </properties>
   <dependencies>
     <dependency>
       <groupId>org.activiti.cloud</groupId>
