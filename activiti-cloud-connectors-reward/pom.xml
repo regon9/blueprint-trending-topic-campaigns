@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.activiti.cloud.examples</groupId>
     <artifactId>trending-topic-campaigns</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>7-201802-EA</version>
   </parent>
   <artifactId>activiti-cloud-connectors-reward</artifactId>
   <name>Activiti Cloud :: Activiti Rewards Cloud Connector</name>
