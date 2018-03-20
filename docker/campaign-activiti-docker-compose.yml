@@ -1,7 +1,7 @@
 version: '2'
 services:
   english-campaign-activiti:
-      image: activiti/english-campaign-rb
+      image: blueprint/english-campaign-rb
       ports:
        - "8081:8081"
       environment:
