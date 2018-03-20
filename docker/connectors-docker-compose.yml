@@ -1,7 +1,7 @@
 version: '2'
 services:
-  activiti-cloud-connector-twitter:
-      image: activiti-cloud-connector-dummytwitter
+  activiti-cloud-connectors-twitter:
+      image: blueprint/activiti-cloud-connectors-dummytwitter
       environment:
         - ACT_RABBITMQ_HOST=rabbitmq
 #        - TWITTER4J_OAUTH_CONSUMERKEY=<TWITTER4J_OAUTH_CONSUMERKEY> #for live twitter get credentials replacing placeholders by signing up at apps.twitter.com
@@ -9,22 +9,26 @@ services:
 #        - TWITTER4J_OAUTH_ACCESSTOKEN=<TWITTER4J_OAUTH_ACCESSTOKEN>
 #        - TWITTER4J_OAUTH_ACCESSTOKENSECRET=<TWITTER4J_OAUTH_ACCESSTOKENSECRET>
         - JAVA_OPTS=-Xmx64m -Xms64m
-        - tweet_rate=350
+        - tweet_rate=50
+      ports:
+        - "8082:8082"
       external_links:
         - rabbitmq
       networks:
         - infrastructure
-  activiti-cloud-connector-ranking:
-      image: activiti-cloud-connector-ranking
+  activiti-cloud-connectors-ranking:
+      image: blueprint/activiti-cloud-connectors-ranking
       environment:
         - ACT_RABBITMQ_HOST=rabbitmq
         - JAVA_OPTS=-Xmx64m -Xms64m
+      ports:
+        - "8083:8083"
       external_links:
         - rabbitmq
       networks:
         - infrastructure
-  activiti-cloud-connector-processing:
-      image: activiti-cloud-connector-processing
+  activiti-cloud-connectors-processing:
+      image: blueprint/activiti-cloud-connectors-processing
       environment:
         - ACT_RABBITMQ_HOST=rabbitmq
         - JAVA_OPTS=-Xmx256m -Xms256m
@@ -32,8 +36,10 @@ services:
         - rabbitmq
       networks:
         - infrastructure
-  activiti-cloud-connector-reward:
-      image: activiti-cloud-connector-reward
+  activiti-cloud-connectors-reward:
+      image: blueprint/activiti-cloud-connectors-reward
+      ports:
+        - "8085:8085"
       environment:
         - ACT_RABBITMQ_HOST=rabbitmq
         - JAVA_OPTS=-Xmx64m -Xms64m

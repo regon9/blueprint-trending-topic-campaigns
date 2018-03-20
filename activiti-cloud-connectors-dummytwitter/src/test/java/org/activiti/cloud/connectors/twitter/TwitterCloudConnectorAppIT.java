@@ -16,6 +16,7 @@
 
 package org.activiti.cloud.connectors.twitter;
 
+import org.activiti.cloud.connectors.twitter.services.SocialFeedService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -40,7 +41,7 @@ public class TwitterCloudConnectorAppIT {
     private TweetRepository tweetRepository;
 
     @Autowired
-    private DummyTweeter dummyTweeter;
+    private SocialFeedService socialFeedService;
 
     @Test
     public void shouldLoadContext() throws Exception {
@@ -59,6 +60,6 @@ public class TwitterCloudConnectorAppIT {
 
     @Test
     public void shouldRetrieveRandomTweet() throws Exception {
-        assertThat(dummyTweeter.getRandomTweet()).isNotNull();
+        assertThat(socialFeedService.getRandomTweet()).isNotNull();
     }
 }

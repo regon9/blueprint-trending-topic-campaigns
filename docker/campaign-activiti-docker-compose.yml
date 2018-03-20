@@ -1,7 +1,9 @@
 version: '2'
 services:
   english-campaign-activiti:
-      image: english-campaign-rb
+      image: blueprint/english-campaign-rb
+      ports:
+       - "8081:8081"
       environment:
         - ACT_RABBITMQ_HOST=rabbitmq
         - ACT_KEYCLOAK_URL=http://activiti-cloud-sso-idm:8180/auth

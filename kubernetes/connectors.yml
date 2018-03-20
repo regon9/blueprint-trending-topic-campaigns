@@ -1,7 +1,7 @@
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: activiti-cloud-connector-processing
+  name: activiti-cloud-connectors-processing
   labels:
     app: infrastructure
     serviceType: connector-processing
@@ -9,14 +9,14 @@ spec:
   replicas: 1
   template:
     metadata:
-      name: activiti-cloud-connector-processing
+      name: activiti-cloud-connectors-processing
       labels:
         app: infrastructure
         serviceType: connector-processing
     spec:
       containers:
-        - name: activiti-cloud-connector-processing
-          image: activiti-cloud-connector-processing:latest
+        - name: activiti-cloud-connectors-processing
+          image: activiti/activiti-cloud-connectors-processing:latest
           readinessProbe:
             httpGet:
               path: /actuator/health
@@ -40,7 +40,7 @@ spec:
           - name: ACT_RABBITMQ_HOST
             value: "rabbitmq"
           - name: SPRING_APPLICATION_NAME
-            value: "activiti-cloud-connector-processing"
+            value: "activiti-cloud-connectors-processing"
           - name: JAVA_OPTS
             value: -Xmx256m -Xms256m
           - name: SPRING_PROFILES_ACTIVE
@@ -49,7 +49,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: activiti-cloud-connector-processing
+  name: activiti-cloud-connectors-processing
   namespace: default
 spec:
   selector:
@@ -62,7 +62,7 @@ spec:
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: activiti-cloud-connector-ranking
+  name: activiti-cloud-connectors-ranking
   labels:
     app: infrastructure
     serviceType: connector-ranking
@@ -70,14 +70,14 @@ spec:
   replicas: 1
   template:
     metadata:
-      name: activiti-cloud-connector-ranking
+      name: activiti-cloud-connectors-ranking
       labels:
         app: infrastructure
         serviceType: connector-ranking
     spec:
       containers:
-        - name: activiti-cloud-connector-ranking
-          image: activiti-cloud-connector-ranking:latest
+        - name: activiti-cloud-connectors-ranking
+          image: activiti/activiti-cloud-connectors-ranking:latest
           readinessProbe:
             httpGet:
               path: /actuator/health
@@ -101,7 +101,7 @@ spec:
           - name: ACT_RABBITMQ_HOST
             value: "rabbitmq"
           - name: SPRING_APPLICATION_NAME
-            value: "activiti-cloud-connector-ranking"
+            value: "activiti-cloud-connectors-ranking"
           - name: JAVA_OPTS
             value: -Xmx64m -Xms64m
           - name: SPRING_PROFILES_ACTIVE
@@ -110,7 +110,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: activiti-cloud-connector-ranking
+  name: activiti-cloud-connectors-ranking
   namespace: default
 spec:
   selector:
@@ -118,12 +118,13 @@ spec:
   ports:
     - port: 8083
       targetPort: 8083
-  type: ClusterIP
+      nodePort: 30083
+  type: NodePort
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: activiti-cloud-connector-twitter
+  name: activiti-cloud-connectors-twitter
   labels:
     app: infrastructure
     serviceType: connector-twitter
@@ -131,14 +132,14 @@ spec:
   replicas: 1
   template:
     metadata:
-      name: activiti-cloud-connector-twitter
+      name: activiti-cloud-connectors-twitter
       labels:
         app: infrastructure
         serviceType: connector-twitter
     spec:
       containers:
-        - name: activiti-cloud-connector-twitter
-          image: activiti-cloud-connector-dummytwitter:latest
+        - name: activiti-cloud-connectors-twitter
+          image: activiti/activiti-cloud-connectors-dummytwitter:latest
           readinessProbe:
             httpGet:
               path: /actuator/health
@@ -162,7 +163,7 @@ spec:
           - name: ACT_RABBITMQ_HOST
             value: "rabbitmq"
           - name: SPRING_APPLICATION_NAME
-            value: "activiti-cloud-connector-twitter"
+            value: "activiti-cloud-connectors-twitter"
 #          - name: TWITTER4J_OAUTH_CONSUMERKEY #get credentials replacing placeholders by signing up at apps.twitter.com
 #            value: <TWITTER4J_OAUTH_CONSUMERKEY>
 #          - name: TWITTER4J_OAUTH_CONSUMERSECRET
@@ -181,7 +182,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: activiti-cloud-connector-twitter
+  name: activiti-cloud-connectors-twitter
   namespace: default
 spec:
   selector:
@@ -189,12 +190,13 @@ spec:
   ports:
     - port: 8082
       targetPort: 8082
-  type: ClusterIP
+      nodePort: 30082
+  type: NodePort
 ---
 apiVersion: apps/v1beta1
 kind: Deployment
 metadata:
-  name: activiti-cloud-connector-reward
+  name: activiti-cloud-connectors-reward
   labels:
     app: infrastructure
     serviceType: connector-reward
@@ -202,14 +204,14 @@ spec:
   replicas: 1
   template:
     metadata:
-      name: activiti-cloud-connector-reward
+      name: activiti-cloud-connectors-reward
       labels:
         app: infrastructure
         serviceType: connector-reward
     spec:
       containers:
-        - name: activiti-cloud-connector-reward
-          image: activiti-cloud-connector-reward:latest
+        - name: activiti-cloud-connectors-reward
+          image: activiti/activiti-cloud-connectors-reward:latest
           readinessProbe:
             httpGet:
               path: /actuator/health
@@ -233,7 +235,7 @@ spec:
           - name: ACT_RABBITMQ_HOST
             value: "rabbitmq"
           - name: SPRING_APPLICATION_NAME
-            value: "activiti-cloud-connector-reward"
+            value: "activiti-cloud-connectors-reward"
           - name: campaignCycle1_campaigns
             value: "activiti-en"
           - name: JAVA_OPTS
@@ -244,7 +246,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: activiti-cloud-connector-reward
+  name: activiti-cloud-connectors-reward
   namespace: default
 spec:
   selector:

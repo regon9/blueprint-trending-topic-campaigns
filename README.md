@@ -2,6 +2,9 @@
 
 This example has a runtime bundle that represents a twitter marketing campaign in two processes. It uses connectors to interface to external services and to implement service tasks outside the runtime bundle.
 
+Please check our GitBook [for more information about this example](https://activiti.gitbooks.io/activiti-7-developers-guide/content/blueprints/trending-topic-campaigns/TrendingTopicCampaigns.html)
+
+
 ## Setup
 
 If you're happy to use a fake twitter feed then there's no need to register a twitter account and you can skip this step. In order to use live twitter you need a twitter app account and an app. Go to https://apps.twitter.com/ to set up (the name, description and website of the app don't matter), generate an access token for the app and put the credentials into either the connectors-docker-compose.yml file if you're using docker-compose or the connectors.yml if you're using kubernetes.
@@ -29,7 +32,7 @@ If you also want distributed logging then after starting minikube do
 
 and deploy with `kubectl create -f logging/`
 
-For distributed tracing do `kubectl create -f tracing/` but note that currently traceIds are not being continued from runtime bundle to connectors - this appears to be a sleuth bug.
+For distributed tracing do `kubectl create -f tracing/` but note that currently traceIds are not being propagated from runtime bundle to connectors - due to a sleuth bug.
 
 For logging you'll want as much ram as you can for for minikube. If you don't want to use it remove or change the SPRING_PROFILES_ACTIVE entries in the kub yml files to !kube. See also https://activiti.gitbooks.io/activiti-7-developers-guide/content/components/activiti-cloud-infra/logging.html
 

@@ -1,8 +1,10 @@
 package org.activiti.cloud.connectors.ranking;
 
 import java.util.List;
-import javax.websocket.server.PathParam;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -10,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RankingController {
 
+    private Logger logger = LoggerFactory.getLogger(RankingController.class);
 
     private final RankingService rankingService;
 
@@ -18,9 +21,9 @@ public class RankingController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/rank/{topic}")
-    public List<RankedAuthor> getRanking(@PathParam("topic") String topic) {
+    public List<RankedAuthor> getRanking(@PathVariable("topic") String topic) {
+        logger.info(">>> Getting Ranked Authors for Campaign: " + topic);
         return rankingService.getRanking(topic);
     }
-
 }
 
