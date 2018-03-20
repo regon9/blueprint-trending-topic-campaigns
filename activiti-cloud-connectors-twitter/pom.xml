@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.activiti.cloud.examples</groupId>
     <artifactId>trending-topic-campaigns</artifactId>
-    <version>7-201802-EA</version>
+    <version>7-201803-EA-SNAPSHOT</version>
   </parent>
   <artifactId>activiti-cloud-connectors-twitter</artifactId>
   <name>Activiti Cloud :: Activiti Twitter Cloud Connector</name>
